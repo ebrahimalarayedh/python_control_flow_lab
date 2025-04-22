@@ -51,7 +51,6 @@ def check_letter():
         print(f"the letter {x} is a vowel.")
     else:
         print(f"The letter {x} is a consonant.")
-    print(x.lower())
 # Call the function
 check_letter()
 
@@ -235,3 +234,69 @@ def determine_season():
 
 # Call the function
 determine_season()
+
+
+# Exercise 6: Number Guessing Game
+#
+# Write a Python function named `guess_number` that allows a user to guess a predetermined number within a range.
+#
+# Requirements:
+# - Set a fixed number as the target for guessing (e.g., 42).
+# - Prompt the user to guess a number within a range (e.g., 1 to 100).
+# - Allow the user to guess up to five times.
+# - After each guess, use conditional statements with AND, OR, and NOT to give the user hints like:
+#   - "Guess is too low" or "Guess is too high."
+#   - "Last chance!" when they are on their fifth guess.
+# - Print "Congratulations, you guessed correctly!" if they guess the number.
+# - Print "Sorry, you failed to guess the number in five attempts." if they do not succeed.
+#
+# Hints:
+# - Use a for loop with a range to limit guesses to five.
+# - Use logical AND, OR, and NOT to check conditions and provide appropriate feedback.
+
+def guess_number():
+    # Your control flow logic goes here
+    import random
+    target= random.randint(1,100)
+    chances=5
+    user_guess=None
+    while(chances):
+        user_guess= input("guess a number within the range (1 to 100): ")
+        if((not user_guess.isnumeric()) or not(1<=int(user_guess)<=100) ):
+            print("You lost an attempt, You have {chances} left. You are either out of the range or entered invalid input.")
+            chances=chances-1
+            continue
+
+        user_guess= int(user_guess)
+        chances=chances-1
+
+        if(user_guess==target):
+            print("Congratulations, you guessed correctly!")
+            return
+    
+        difference= abs(target-user_guess)
+        if(user_guess>target):
+            if(difference<10):
+                print("Close! Just a bit too high, off by ones.")
+            else:
+                print("Your guess is too high, you're off by tens!")
+        else:
+            if(difference<10):
+                print("Close! Just a bit too low, off by ones.")
+            else:
+                print("Your guess is too low, you're off by tens!")
+        if chances == 1:
+            print("Last chance!")
+        else:
+            print(f"You have {chances} attempts left")
+
+    if chances==0:
+        print(f"Sorry, you failed to guess the number in five attempts. The answer was {target}.")
+
+
+
+
+
+# Call the function
+guess_number()
+
