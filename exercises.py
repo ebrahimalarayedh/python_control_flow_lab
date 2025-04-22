@@ -211,6 +211,7 @@ def determine_season():
         print("Invalid month. Please enter a valid 3-letter month abbreviation (e.g., Jan, Feb).")
 
     while(1):
+        day_input= input("Enter the day of the month: ")
         if(day_input.isdigit() and 1 <= int(day_input) <= 31):
             day_input = int(day_input)
             break
